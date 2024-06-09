@@ -27,7 +27,7 @@ export interface IThemeProviderProps {
     children: React.ReactNode;
 }
 
-const darkTheme = createTheme({
+export const darkTheme = createTheme({
     palette: {
         mode: 'dark',
     },
