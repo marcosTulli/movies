@@ -158,7 +158,7 @@ const Navbar = () => {
                             component="a"
                             href="#app-bar-with-responsive-menu"
                         >
-                            <Search theme={darkTheme} >
+                            <Search onChange={(e) => { console.log((e.target as HTMLInputElement).value); }} theme={darkTheme} >
                                 <SearchIconWrapper >
                                     <SearchIcon />
                                 </SearchIconWrapper>
