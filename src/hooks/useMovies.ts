@@ -6,7 +6,6 @@ export const useMovies = () => {
     const params: ISearchParams = {
         language: LANGUAGE.EN,
         page: 1
-
     };
 
     const { data: nowPlaying } = useMoviesByCategory(MOVIE_CATEGORIES.NOW_PLAYING, params);
@@ -14,7 +13,6 @@ export const useMovies = () => {
     const { data: upcomming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMMING, params);
     const { data: popular } = useMoviesByCategory(MOVIE_CATEGORIES.POPULAR, params);
 
-    console.log(popular);
     const movies = [
         {
             data: nowPlaying,
