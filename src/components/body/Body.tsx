@@ -12,11 +12,11 @@ const Body = () => {
 
     React.useEffect(() => {
         if (movies) {
-            const catNum = 1;
+            const catNum = 2;
             const category = movies[catNum].data;
             console.log(movies[catNum].displayName);
             if (category) {
-                const id = category.results[8].poster_path;
+                const id = category.results[15].poster_path;
                 setPosterId(id);
             }
         }

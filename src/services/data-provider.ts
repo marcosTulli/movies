@@ -28,14 +28,14 @@ class DataProvider {
         const response = await axios.get<Blob>(cdn + path, {
             ...options,
             params,
-            responseType: 'blob', // Ensuring response is a blob
+            responseType: 'blob',
             paramsSerializer: {
                 encode: (params) => {
                     return params;
                 }
             }
         });
-        return response.data as Blob; // Explicitly cast to Blob
+        return response.data as Blob;
 
 
     }
