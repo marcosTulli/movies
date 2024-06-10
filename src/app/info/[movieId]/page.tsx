@@ -1,5 +1,7 @@
 'use client';
 import React from 'react';
+import { useMovie } from '@/hooks/queries';
+import { LANGUAGE } from '@/models/models';
 
 
 export interface IMovieDetailsParams {
@@ -8,6 +10,8 @@ export interface IMovieDetailsParams {
 
 const MovieDetails: React.FC<IMovieDetailsParams> = ({ params }) => {
     const { movieId } = params;
+    const { data } = useMovie({ language: LANGUAGE.EN, movie_id: parseInt(movieId) });
+    console.log(data);
     return (
         <div>
             <h1>Movie Details for ID:{movieId} </h1>

@@ -40,6 +40,26 @@ export interface IMovie {
     vote_count: number;
 }
 
+export interface IMovieExtended extends IMovie {
+    belongs_to_collection: {
+        id: number;
+        name: string;
+        poster_path: string;
+        backdrop_path: string;
+    };
+    budget: number;
+    genres: IGenre[];
+    homepage: string;
+    imdb_id: string;
+    origin_country: string[];
+    production_companies: IProductionCompany[];
+    production_countries: IProductionCountry[];
+    revenue: number;
+    runtime: number;
+    spoken_languages: ISpokenLanguage[];
+    status: string;
+    tagline: string;
+}
 export interface IMovieSearchResult {
     page: number;
     results: IMovie[];
@@ -106,26 +126,6 @@ export interface ISpokenLanguage {
     name: string;
 }
 
-export interface IMovieExtended extends IMovie {
-    belongs_to_collection: {
-        id: number;
-        name: string;
-        poster_path: string;
-        backdrop_path: string;
-    };
-    budget: number;
-    genres: IGenre[];
-    homepage: string;
-    imdb_id: string;
-    origin_country: string[];
-    production_companies: IProductionCompany[];
-    production_countries: IProductionCountry[];
-    revenue: number;
-    runtime: number;
-    spoken_languages: ISpokenLanguage[];
-    status: string;
-    tagline: string;
-}
 
 export interface ISearchResult {
     page: number;
@@ -143,4 +143,9 @@ export interface IGetPosterParams {
     width: '200' | '500',
     id: string | undefined;
     enable?: boolean;
+}
+
+export interface IGetMovieParams {
+    language: LANGUAGE;
+    movie_id: number;
 }

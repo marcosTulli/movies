@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { ISearchResult, ISearchParams, MOVIE_CATEGORIES, IGetPosterParams } from '@/models/models';
+import { ISearchResult, ISearchParams, MOVIE_CATEGORIES, IGetPosterParams, IGetMovieParams } from '@/models/models';
 import { Blob } from 'buffer';
+import { IMovieExtended } from '../models/models';
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
 const cdn = process.env.NEXT_PUBLIC_API_POSTER_URL || '';
@@ -48,6 +49,11 @@ class DataProvider {
     public getPoster = async ({ width, id }: IGetPosterParams): Promise<Blob> => {
         return this.getCdn(`/w${width}${id}`);
     };
+
+    public getMovie = async (params: IGetMovieParams): Promise<IMovieExtended> => {
+        return this.get(`/movie/${params.movie_id}`, { ...params });
+    };
+
 
 }
 const DataProviderInstance = new DataProvider();
