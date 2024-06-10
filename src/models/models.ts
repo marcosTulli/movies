@@ -138,3 +138,8 @@ export interface ISearchParams {
     language: LANGUAGE;
     page: number;
 }
+
+export interface IGetPosterParams {
+    width: '200' | '500',
+    id: string;
+}
