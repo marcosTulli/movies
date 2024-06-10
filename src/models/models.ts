@@ -1,3 +1,7 @@
+export enum LANGUAGE {
+    EN = 'en-US',
+    SP = 'sp-ES'
+}
 export interface IFilmOptions {
     title: string;
     year: number;
@@ -121,4 +125,9 @@ export interface ISearchResult {
     results: IMovie[];
     total_pages: number;
     total_results: number;
+}
+
+export interface ISearchParams {
+    language: LANGUAGE;
+    page: number;
 }
