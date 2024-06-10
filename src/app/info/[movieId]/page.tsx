@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
-import { useMovie } from '@/hooks/queries';
+import { useMovie, usePoster } from '@/hooks/queries';
 import { LANGUAGE } from '@/models/models';
+import Image from 'next/image';
 
 
 export interface IMovieDetailsParams {
@@ -11,10 +12,19 @@ export interface IMovieDetailsParams {
 const MovieDetails: React.FC<IMovieDetailsParams> = ({ params }) => {
     const { movieId } = params;
     const { data } = useMovie({ language: LANGUAGE.EN, movie_id: parseInt(movieId) });
-    console.log(data);
+    const enablePoster = data !== undefined && data.poster_path.length > 0;
+    const { data: poster } = usePoster({ width: '200', id: data?.poster_path, enable: enablePoster });
     return (
         <div>
-            <h1>Movie Details for ID:{movieId} </h1>
+            {data &&
+                <div>
+                    <h1>{data.title}</h1>
+                    <h3>{data.overview}</h3>
+                    {poster && <Image alt={'poster'} src={poster} height={300} width={200} />}
+                </div>
+
+
+            }
         </div>
     );
 };
