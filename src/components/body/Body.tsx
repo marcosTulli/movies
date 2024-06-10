@@ -6,6 +6,8 @@ import { usePoster } from '@/hooks/queries';
 import Image from 'next/image';
 import Slider from '../slider/Slider';
 import { IMovie } from '@/models/models';
+import Add from '../Add';
+import List from '../List';
 
 
 const Body = () => {
@@ -16,8 +18,10 @@ const Body = () => {
             {movieCategories.map((category) => {
                 return (
                     <div key={category.category}>
-                        <p>{category.displayName}</p>
-                        <Slider movies={category.data?.results as IMovie[]} />
+                        {/* <p>{category.displayName}</p>
+                        <Slider movies={category.data?.results as IMovie[]} /> */}
+                        <Add />
+                        <List />
                     </div>
                 );
             })}
