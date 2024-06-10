@@ -141,5 +141,6 @@ export interface ISearchParams {
 
 export interface IGetPosterParams {
     width: '200' | '500',
-    id: string;
+    id: string | undefined;
+    enable?: boolean;
 }

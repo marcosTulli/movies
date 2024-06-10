@@ -8,8 +8,15 @@ export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchP
         queryFn: () => DataProviderInstance.getMoviesByCategory(category, params)
     });
 
-export const usePoster = ({ width, id }: IGetPosterParams) =>
-    useQuery({
-        queryKey: ['top-rated', id],
-        queryFn: () => DataProviderInstance.getPoster({ width, id })
+
+export const usePoster = ({ width, id, enable }: IGetPosterParams) => {
+    return useQuery<string | undefined, Error>({
+        queryKey: ['poster', id],
+        queryFn: async () => {
+            const blob: any = await DataProviderInstance.getPoster({ width, id });
+            const imageUrl = URL.createObjectURL(blob);
+            return imageUrl;
+        },
+        enabled: enable,
     });
+};
