@@ -7,7 +7,7 @@ export enum MOVIE_CATEGORIES {
     NOW_PLAYING = 'now_playing',
     POPULAR = 'popular',
     TOP_RATED = 'top_rated',
-    UPCOMMING = 'upcomming',
+    UPCOMMING = 'upcoming',
 }
 export interface IFilmOptions {
     title: string;

@@ -4,7 +4,7 @@ import { IGetPosterParams, ISearchParams, MOVIE_CATEGORIES } from "@/models/mode
 
 export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
     useQuery({
-        queryKey: ['top-rated', params],
+        queryKey: ['top-rated', params, category],
         queryFn: () => DataProviderInstance.getMoviesByCategory(category, params)
     });
 

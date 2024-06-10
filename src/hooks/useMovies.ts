@@ -14,6 +14,7 @@ export const useMovies = () => {
     const { data: upcomming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMMING, params);
     const { data: popular } = useMoviesByCategory(MOVIE_CATEGORIES.POPULAR, params);
 
+    console.log(popular);
     const movies = [
         {
             data: nowPlaying,
