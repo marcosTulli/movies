@@ -2,6 +2,13 @@ export enum LANGUAGE {
     EN = 'en-US',
     SP = 'sp-ES'
 }
+
+export enum MOVIE_CATEGORIES {
+    NOW_PLAYING = 'now_playing',
+    POPULAR = 'popular',
+    TOP_RATED = 'top_rated',
+    UPCOMMING = 'upcomming',
+}
 export interface IFilmOptions {
     title: string;
     year: number;

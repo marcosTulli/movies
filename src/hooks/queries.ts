@@ -1,9 +1,9 @@
-import { useQuery, QueryClientProvider } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import DataProviderInstance from "@/services/data-provider";
-import { ISearchParams } from "@/models/models";
+import { ISearchParams, MOVIE_CATEGORIES } from "@/models/models";
 
-export const useTopRatedMovies = (params: ISearchParams) =>
+export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
     useQuery({
         queryKey: ['top-rated', params],
-        queryFn: () => DataProviderInstance.getTopRated(params)
+        queryFn: () => DataProviderInstance.getMoviesByCategory(category, params)
     });
