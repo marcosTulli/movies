@@ -1,0 +1,15 @@
+// MovieGrid.module.scss
+.card {
+    max-width: 345px;
+    margin: 16px; // Adjust the margin as needed
+}
+
+.media {
+    height: 500px;
+}
+
+.gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

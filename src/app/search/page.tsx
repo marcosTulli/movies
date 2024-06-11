@@ -1,25 +1,10 @@
-import { useAppSelector } from "@/store/store";
-import { ISearchMoviesParams } from "@/models/models";
-import { useSearchMovie } from "@/hooks/queries";
-
-const SearchResult = () => {
-    const { query } = useAppSelector(state => state.query);
-    const params: ISearchMoviesParams = { query: query as string };
-    const { data } = useSearchMovie(params);
-    const searchResults = data ? data.results : [];
+'use client';
+import SearchResult from "@/components/search-results/SearchResults";
+const SearchResultsPage = () => {
 
     return (
-        <div>
-            <h1>Search Results</h1>
-            <ul>
-                {searchResults?.map(i => {
-                    return (
-                        <li key={i.id}>{i.title}</li>
-                    );
-                })}
-            </ul>
-        </div>
+        <SearchResult />
     );
 };
 
-export default SearchResult;
+export default SearchResultsPage;
