@@ -151,7 +151,7 @@ export interface IGetMovieParams {
 }
 
 export interface ISearchMoviesParams {
-    query: string;
+    query: string | null;
     include_adult?: boolean;
     language?: LANGUAGE;
     primary_release_year?: string;

@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface IQuery {
-    query: string;
+    query: string | null;
 }
 
 const initialState: IQuery = {
-    query: ''
+    query: null
 };
 
 export const querySlice = createSlice({
     name: 'query',
     initialState,
     reducers: {
-        setQuery: (state, action: PayloadAction<string>) => {
+        setQuery: (state, action: PayloadAction<string | null>) => {
             state.query = action.payload;
         }
     }

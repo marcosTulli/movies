@@ -1,11 +1,22 @@
+import { useAppSelector } from "@/store/store";
+import { ISearchMoviesParams } from "@/models/models";
+import { useSearchMovie } from "@/hooks/queries";
+
 const SearchResult = () => {
+    const { query } = useAppSelector(state => state.query);
+    const params: ISearchMoviesParams = { query: query as string };
+    const { data } = useSearchMovie(params);
+    const searchResults = data ? data.results : [];
+
     return (
         <div>
             <h1>Search Results</h1>
             <ul>
-                <li>Movie 1</li>
-                <li>Movie 2</li>
-                <li>Movie 3</li>
+                {searchResults?.map(i => {
+                    return (
+                        <li key={i.id}>{i.title}</li>
+                    );
+                })}
             </ul>
         </div>
     );

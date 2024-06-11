@@ -54,7 +54,7 @@ class DataProvider {
         return this.get(`/movie/${params.movie_id}`, { ...params });
     };
 
-    public searchMovies = async (params: ISearchMoviesParams): Promise<IMovieExtended> => {
+    public searchMovies = async (params: ISearchMoviesParams): Promise<ISearchResult> => {
         return this.get(`/search/movie?query=${params.query}`);
     };
 

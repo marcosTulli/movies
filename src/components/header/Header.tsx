@@ -88,17 +88,12 @@ const Navbar = () => {
 
 
     const dispatch = useAppDispatch();
-    const { query } = useAppSelector(state => state.query);
-    const params: ISearchMoviesParams = {
-        query
-    };
-    const { data } = useSearchMovie(params);
-
-    console.log(data);
-
     const handleSearch = (value: string) => {
         if (value.length >= 3) {
             dispatch(setQuery(value));
+        }
+        if (value.length === 0) {
+            dispatch(setQuery(null));
         }
 
     };
