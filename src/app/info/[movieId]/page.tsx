@@ -21,7 +21,7 @@ const MovieDetails: React.FC<IMovieDetailsParams> = ({ params }) => {
             {data &&
                 <div>
                     <h1>{data.title}</h1>
-                    <h3>{data.overview}</h3>
+                    <h3 style={{ width: '55%' }}>{data.overview}</h3>
                     {poster && <Image alt={'poster'} src={poster} height={300} width={200} />}
                 </div>
 
