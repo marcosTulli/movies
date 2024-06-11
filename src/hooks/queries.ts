@@ -13,7 +13,7 @@ export const usePoster = ({ width, id, enable }: IGetPosterParams) => {
     return useQuery<string | undefined, Error>({
         queryKey: ['poster', id],
         queryFn: async () => {
-            const blob: any = await DataProviderInstance.getPoster({ width, id });
+            const blob: Blob = await DataProviderInstance.getPoster({ width, id });
             const imageUrl = URL.createObjectURL(blob);
             return imageUrl;
         },

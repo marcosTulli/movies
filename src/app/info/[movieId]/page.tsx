@@ -3,8 +3,6 @@ import React from 'react';
 import { useMovie, usePoster } from '@/hooks/queries';
 import { LANGUAGE } from '@/models/models';
 import Image from 'next/image';
-import { useAppSelector } from '@/store/store';
-
 
 export interface IMovieDetailsParams {
     params: { movieId: string; };

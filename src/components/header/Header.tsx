@@ -17,10 +17,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { darkTheme } from '@/theme';
 import logo from '@/app/favicon.ico';
 import Image from 'next/image';
-import { useAppDispatch, useAppSelector } from '@/store/store';
+import { useAppDispatch } from '@/store/store';
 import { setQuery } from '@/store/features/querySlice';
-import { useSearchMovie } from '@/hooks/queries';
-import { ISearchMoviesParams } from '@/models/models';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];

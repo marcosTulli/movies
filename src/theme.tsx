@@ -16,7 +16,7 @@ interface ILanguageContext {
 
 const defaultContext = {
     theme: Theme.dark,
-    setTheme: (newTheme: Theme) => { },
+    setTheme: (newTheme: Theme) => { return newTheme; },
     toggleTheme: () => { console.log("Changed Theme"); },
     isChecked: false
 };
