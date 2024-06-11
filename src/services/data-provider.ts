@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { ISearchResult, ISearchParams, MOVIE_CATEGORIES, IGetPosterParams, IGetMovieParams } from '@/models/models';
+import { ISearchResult, ISearchParams, MOVIE_CATEGORIES, IGetPosterParams, IGetMovieParams, ISearchMoviesParams } from '@/models/models';
 import { Blob } from 'buffer';
 import { IMovieExtended } from '../models/models';
 
@@ -52,6 +52,10 @@ class DataProvider {
 
     public getMovie = async (params: IGetMovieParams): Promise<IMovieExtended> => {
         return this.get(`/movie/${params.movie_id}`, { ...params });
+    };
+
+    public searchMovies = async (params: ISearchMoviesParams): Promise<IMovieExtended> => {
+        return this.get(`/search/movie?query=${params.query}`);
     };
 
 

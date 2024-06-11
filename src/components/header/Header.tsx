@@ -17,8 +17,10 @@ import { styled, alpha } from '@mui/material/styles';
 import { darkTheme } from '@/theme';
 import logo from '@/app/favicon.ico';
 import Image from 'next/image';
-import { useAppDispatch } from '@/store/store';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setQuery } from '@/store/features/querySlice';
+import { useSearchMovie } from '@/hooks/queries';
+import { ISearchMoviesParams } from '@/models/models';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -84,7 +86,16 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
+
     const dispatch = useAppDispatch();
+    const { query } = useAppSelector(state => state.query);
+    const params: ISearchMoviesParams = {
+        query
+    };
+    const { data } = useSearchMovie(params);
+
+    console.log(data);
+
     const handleSearch = (value: string) => {
         if (value.length >= 3) {
             dispatch(setQuery(value));

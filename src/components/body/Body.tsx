@@ -8,9 +8,7 @@ import { useAppSelector } from '@/store/store';
 
 
 const Body = () => {
-    const { query } = useAppSelector(state => state.query);
     const movieCategories = useMovies();
-    console.log(query);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>

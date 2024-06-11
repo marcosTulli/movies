@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import DataProviderInstance from "@/services/data-provider";
-import { IGetMovieParams, IGetPosterParams, ISearchParams, MOVIE_CATEGORIES } from "@/models/models";
+import { IGetMovieParams, IGetPosterParams, ISearchMoviesParams, ISearchParams, MOVIE_CATEGORIES } from "@/models/models";
 
 export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
     useQuery({
@@ -21,9 +21,14 @@ export const usePoster = ({ width, id, enable }: IGetPosterParams) => {
     });
 };
 
-
 export const useMovie = (params: IGetMovieParams) =>
     useQuery({
         queryKey: ['movie', params],
         queryFn: () => DataProviderInstance.getMovie(params)
+    });
+
+export const useSearchMovie = (params: ISearchMoviesParams) =>
+    useQuery({
+        queryKey: ['search-results', params],
+        queryFn: () => DataProviderInstance.searchMovies(params)
     });

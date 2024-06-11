@@ -149,3 +149,13 @@ export interface IGetMovieParams {
     language: LANGUAGE;
     movie_id: number;
 }
+
+export interface ISearchMoviesParams {
+    query: string;
+    include_adult?: boolean;
+    language?: LANGUAGE;
+    primary_release_year?: string;
+    page?: number;
+    region?: string;
+    year?: string;
+}
