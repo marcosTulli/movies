@@ -8,7 +8,7 @@ export interface ICardProps {
     posterPath: string;
 }
 const Card: React.FC<ICardProps> = ({ posterPath }) => {
-    const { data: poster } = usePoster({ width: '200', id: posterPath, enable: posterPath.length > 0 });
+    const { data: poster } = usePoster({ width: '200', id: posterPath, enable: (posterPath !== null && posterPath.length > 0) });
     return (
         <Container className={style.cardContainer}>
             {poster && <Image alt={'poster'} src={poster} height={300} width={200} />}
