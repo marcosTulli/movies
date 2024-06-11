@@ -1,22 +1,28 @@
-'use client';
-import { useAppDispatch } from '@/store/store';
-import * as React from 'react';
-import { addPerson } from '../../personSlice';
+// 'use client';
+// import { useAppDispatch } from '@/store/store';
+// import * as React from 'react';
+// import { addPerson } from '../store/features/personSlice';
 
-const Add = () => {
-    const name = React.useRef<string>('');
-    const dispatch = useAppDispatch();
+// const Add = () => {
+//     const name = React.useRef<string>('');
+//     const dispatch = useAppDispatch();
 
-    return (
-        <form>
-            <label htmlFor='input'>Person Name:</label>
-            <input onChange={(e => name.current = e.target.value)} />
-            <button
-                onClick={() => dispatch(addPerson({ name: name.current }))}
+//     const handleSave = () => {
+//         dispatch(addPerson({ name: name.current }));
+//         name.current = "";
+//     };
+//     return (
+//         <form>
+//             <label htmlFor='input'>Person Name:</label>
+//             <input onChange={(e => name.current = e.target.value)} />
+//             <button
+//                 type='button'
+//                 onClick={handleSave}
+//             >
+//                 Add
+//             </button>
+//         </form>
+//     );
+// };
 
-            >Add</button>
-        </form>
-    );
-};
-
-export default Add;
+// export default Add;

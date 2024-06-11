@@ -17,6 +17,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { darkTheme } from '@/theme';
 import logo from '@/app/favicon.ico';
 import Image from 'next/image';
+import { useAppDispatch } from '@/store/store';
+import { setQuery } from '@/store/features/querySlice';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -80,6 +82,14 @@ const Navbar = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const dispatch = useAppDispatch();
+    const handleSearch = (value: string) => {
+        if (value.length >= 3) {
+            dispatch(setQuery(value));
+        }
+
     };
 
     return (
@@ -156,9 +166,12 @@ const Navbar = () => {
                             variant="h5"
                             noWrap
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                        // href="#app-bar-with-responsive-menu"
                         >
-                            <Search onChange={(e) => { console.log((e.target as HTMLInputElement).value); }} theme={darkTheme} >
+                            <Search
+                                onChange={(e) => { handleSearch((e.target as HTMLInputElement).value); }}
+                                theme={darkTheme}
+                            >
                                 <SearchIconWrapper >
                                     <SearchIcon />
                                 </SearchIconWrapper>

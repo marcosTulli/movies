@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { PersonSlice } from "../../personSlice";
+import { querySlice } from "./features/querySlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
-    reducer: {
-        person: PersonSlice.reducer
-    }
+    reducer: { query: querySlice.reducer }
 });
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;
