@@ -18,7 +18,7 @@ const SearchResult = () => {
                 <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                     <Link
                         key={movie.id}
-                        href={`/info/${movie.id}`}
+                        href={`/movie/${movie.id}`}
                     >
                         <Card
                             posterPath={movie.poster_path}

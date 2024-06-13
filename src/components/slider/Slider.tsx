@@ -16,7 +16,7 @@ const Slider: React.FC<ISliderProps> = ({ movies }) => {
                     return (
                         <Link
                             key={movie.id}
-                            href={`/info/${movie.id}`}
+                            href={`/movie/${movie.id}`}
                         >
                             <Card
                                 posterPath={movie.poster_path}
