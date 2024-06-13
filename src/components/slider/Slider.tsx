@@ -2,7 +2,6 @@ import React from 'react';
 import Card from '../card/Card';
 import { IMovie } from '@/models/models';
 import { Container } from '@mui/material';
-import style from './Slider.module.scss';
 import Link from 'next/link';
 
 export interface ISliderProps {

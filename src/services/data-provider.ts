@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { ISearchResult, ISearchParams, MOVIE_CATEGORIES, IGetPosterParams, IGetMovieParams, ISearchMoviesParams } from '@/models/models';
-import { Blob } from 'buffer';
 import { IMovieExtended } from '../models/models';
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
