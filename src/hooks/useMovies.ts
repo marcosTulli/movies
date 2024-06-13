@@ -5,7 +5,7 @@ import { ISearchParams, LANGUAGE, MOVIE_CATEGORIES } from '@/models/models';
 export const useMovies = () => {
     const params: ISearchParams = {
         language: LANGUAGE.EN,
-        page: 1
+        page: 3
     };
 
     const { data: nowPlaying } = useMoviesByCategory(MOVIE_CATEGORIES.NOW_PLAYING, params);

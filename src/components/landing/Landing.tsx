@@ -2,18 +2,22 @@
 import React from 'react';
 import { useMovies } from '@/hooks/useMovies';
 import Slider from '../slider/Slider';
-import { IMovie } from '@/models/models';
+import { ISearchResult } from '@/models/models';
 
 const Landing = () => {
     const movieCategories = useMovies();
 
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {movieCategories.map((category) => {
+            {movieCategories?.map((category) => {
+                const { displayName, data } = category;
                 return (
-                    <div key={category.category}>
-                        <p>{category.displayName}</p>
-                        <Slider movies={category.data?.results as IMovie[]} />
+                    <div key={category.category} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <p style={{ alignSelf: 'center', fontSize: '2rem' }}>{displayName}</p>
+                        <Slider
+                            data={data as ISearchResult}
+                        />
                     </div>
                 );
             })}
