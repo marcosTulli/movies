@@ -3,14 +3,11 @@ import React from 'react';
 import { useMovie, usePoster } from '@/hooks/queries';
 import { LANGUAGE } from '@/models/models';
 import Image from 'next/image';
-<<<<<<< HEAD:src/app/info/[movieId]/page.tsx
-=======
 import { ArrowBack } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 
->>>>>>> dev:src/app/movie/[movieId]/page.tsx
 
 export interface IMovieDetailsParams {
     params: { movieId: string; };
