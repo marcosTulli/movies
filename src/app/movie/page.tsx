@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { withRouter } from 'next/router';
 
 const Movie = () => {
     const router = useRouter();

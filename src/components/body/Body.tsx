@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import styles from './Body.module.scss';
 import Landing from '../landing/Landing';
 import SearchResult from '@/app/search/page';
 import { useAppSelector } from '@/store/store';

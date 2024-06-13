@@ -3,8 +3,6 @@ import React from 'react';
 import { useMovie, usePoster } from '@/hooks/queries';
 import { LANGUAGE } from '@/models/models';
 import Image from 'next/image';
-import { useAppSelector } from '@/store/store';
-import { useRouter } from 'next/navigation';
 
 
 
@@ -13,12 +11,10 @@ export interface IMovieDetailsParams {
 }
 
 const MovieDetails: React.FC<IMovieDetailsParams> = ({ params }): JSX.Element => {
-    const router = useRouter();
     const { movieId } = params;
     const { data } = useMovie({ language: LANGUAGE.EN, movie_id: parseInt(movieId) });
     const enablePoster = data !== undefined && data.poster_path.length > 0;
     const { data: poster } = usePoster({ width: '200', id: data?.poster_path, enable: enablePoster });
-    const { query } = useAppSelector(state => state.query);
     return (
         <div>
             {data &&
