@@ -90,11 +90,10 @@ const Navbar = () => {
     const dispatch = useAppDispatch();
     const handleSearch = (value: string) => {
         router.replace('/', undefined);
-        if (value.length >= 3) {
-            dispatch(setQuery(value));
-        }
         if (value.length === 0) {
             dispatch(setQuery(null));
+        } else {
+            dispatch(setQuery(value));
         }
 
     };
@@ -173,7 +172,6 @@ const Navbar = () => {
                             variant="h5"
                             noWrap
                             component="a"
-                        // href="#app-bar-with-responsive-menu"
                         >
                             <Search
                                 onChange={(e) => { handleSearch((e.target as HTMLInputElement).value); }}
