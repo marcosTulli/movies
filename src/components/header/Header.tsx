@@ -19,8 +19,7 @@ import logo from '@/app/favicon.ico';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setQuery } from '@/store/features/querySlice';
-import { useSearchMovie } from '@/hooks/queries';
-import { ISearchMoviesParams } from '@/models/models';
+import { useRouter } from 'next/navigation';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -68,6 +67,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const Navbar = () => {
+    const router = useRouter();
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -89,6 +89,7 @@ const Navbar = () => {
 
     const dispatch = useAppDispatch();
     const handleSearch = (value: string) => {
+        router.replace('/', undefined);
         if (value.length >= 3) {
             dispatch(setQuery(value));
         }
