@@ -9,20 +9,6 @@ export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchP
         enabled: params.category === category
     });
 
-// export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
-// useInfiniteQuery<ISearchResult>({
-//     queryKey: ['category', params, category],
-//     queryFn: () => DataProviderInstance.getMoviesByCategory(category, params),
-//     initialPageParam: 1,
-//     getNextPageParam: (_, pages) => {
-//         console.log(pages.length);
-//         return pages.length;
-//     },
-//     enabled: params.category === category
-// });
-
-
-
 export const usePoster = ({ width, id, enable }: IGetPosterParams) => {
     return useQuery<string | undefined, Error>({
         queryKey: ['poster', id],

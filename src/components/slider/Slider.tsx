@@ -26,6 +26,7 @@ const convertToCamelCase = (enumValue: string): keyof IPage => {
     return (camelCaseValue + 'Page') as keyof IPage;
 };
 
+// I need to organize the code, but it's working. 
 const Slider: React.FC<ISliderProps> = ({ data, category }) => {
     const results = data?.results;
     const { nowPlayingPage, topRatedPage, upcomingPage, popularPage } = useAppSelector(state => state.page);
@@ -36,7 +37,7 @@ const Slider: React.FC<ISliderProps> = ({ data, category }) => {
     const slideSize = 5;
     const [currentSlide, setCurrentSlide] = React.useState<number>(0);
     const disableNext = pageNumber > data?.total_pages;
-    const disableBack = currentSlide === 0;
+    const disableBack = pageNumber <= 1 && currentSlide === 0;
     const currentResults = results?.slice(currentSlide * slideSize, (currentSlide + 1) * slideSize);
     const dispatch = useAppDispatch();
 
@@ -47,11 +48,14 @@ const Slider: React.FC<ISliderProps> = ({ data, category }) => {
         setCurrentSlide(0);
     };
 
+    const handlePreviousPage = (pageNumber: number) => {
+        dispatch(setPage({ [key]: pageNumber, category }));
+        setCurrentSlide(Math.floor(totalEntries / slideSize) - 1);
+    };
 
     const handleNext = () => {
         dispatch(setPage({ [key]: pageNumber, category }));
         const nextPage = pageNumber + 1;
-
         if ((currentSlide + 1) * slideSize === totalEntries) {
             handleNextPage(nextPage);
         }
@@ -62,9 +66,13 @@ const Slider: React.FC<ISliderProps> = ({ data, category }) => {
         }
     };
 
+
     const handleBack = () => {
         if (currentSlide > 0) {
             setCurrentSlide(currentSlide - 1);
+        } else if (currentSlide === 0 && pageNumber > 1) {
+            const previousPage = pageNumber - 1;
+            handlePreviousPage(previousPage);
         }
     };
 
