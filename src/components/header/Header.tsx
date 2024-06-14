@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import logo from '@/app/favicon.ico';
 import Image from 'next/image';
 import { useAppDispatch } from '@/store/store';
-import { setQuery } from '@/store/features/querySlice';
+import { setQuery } from '@/store/features/';
 import { useRouter } from 'next/navigation';
 import InputSearch from '../input-search/InputSearch';
 

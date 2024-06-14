@@ -1,16 +1,32 @@
 'use client';
+
+import { useEffect, useState } from 'react';
 import { useMoviesByCategory } from '@/hooks/queries';
 import { ISearchParams, LANGUAGE, MOVIE_CATEGORIES } from '@/models/models';
+import { useAppSelector } from '@/store/store';
 
 export const useMovies = () => {
+    const { page: selectedPage, category: selectedCategory } = useAppSelector(state => state.page);
+    const [currentCategory, setCurrentCategory] = useState<MOVIE_CATEGORIES | undefined>(undefined);
+    const [currentPage, setCurrentPage] = useState<number>(selectedPage);
+
+    useEffect(() => {
+        if (selectedCategory !== currentCategory) {
+            setCurrentCategory(selectedCategory);
+            setCurrentPage(selectedPage);
+        } else {
+            setCurrentPage(selectedPage);
+        }
+    }, [selectedCategory]);
+
     const params: ISearchParams = {
         language: LANGUAGE.EN,
-        page: 3
+        page: currentPage
     };
 
     const { data: nowPlaying } = useMoviesByCategory(MOVIE_CATEGORIES.NOW_PLAYING, params);
     const { data: topRated } = useMoviesByCategory(MOVIE_CATEGORIES.TOP_RATED, params);
-    const { data: upcomming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMMING, params);
+    const { data: upcoming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMING, params);
     const { data: popular } = useMoviesByCategory(MOVIE_CATEGORIES.POPULAR, params);
 
     const movies = [
@@ -25,9 +41,9 @@ export const useMovies = () => {
             displayName: 'Top Rated'
         },
         {
-            data: upcomming,
-            category: MOVIE_CATEGORIES.UPCOMMING,
-            displayName: 'Upcomming'
+            data: upcoming,
+            category: MOVIE_CATEGORIES.UPCOMING,
+            displayName: 'Upcoming'
         },
         {
             data: popular,

@@ -17,6 +17,7 @@ const Landing = () => {
                         <p style={{ alignSelf: 'center', fontSize: '2rem' }}>{displayName}</p>
                         <Slider
                             data={data as ISearchResult}
+                            category={category.category}
                         />
                     </div>
                 );
