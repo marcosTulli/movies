@@ -18,6 +18,14 @@ export interface IMovieIdResult {
     id: number;
     adult: boolean;
 }
+export interface IPage {
+    nowPlayingPage?: number | undefined;
+    topRatedPage?: number | undefined;
+    upcomingPage?: number | undefined;
+    popularPage?: number | undefined;
+    category?: MOVIE_CATEGORIES;
+}
+
 
 export interface IMovieIdArray {
     results: IMovieIdResult[];
@@ -137,6 +145,7 @@ export interface ISearchResult {
 export interface ISearchParams {
     language: LANGUAGE;
     page: number;
+    category?: MOVIE_CATEGORIES;
 }
 
 export interface IGetPosterParams {

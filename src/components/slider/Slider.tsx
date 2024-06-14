@@ -7,46 +7,52 @@ import { Button } from '@mui/material';
 import Link from 'next/link';
 import { useAppDispatch } from '@/store/store';
 import { setPage } from '@/store/features/';
-import { MOVIE_CATEGORIES } from '@/models/models';
-// import { useAppSelector } from '@/store/store';
+import { MOVIE_CATEGORIES, IPage } from '@/models/models';
+import { useAppSelector } from '@/store/store';
 
 export interface ISliderProps {
     data: ISearchResult;
     category: MOVIE_CATEGORIES;
 }
 
+const convertToCamelCase = (enumValue: string): keyof IPage => {
+    const camelCaseValue = enumValue.replace('_', " ").replace(/\w+/g, (match, index) => {
+        if (index === 0) {
+            return match.toLowerCase();
+        } else {
+            return match.charAt(0).toUpperCase() + match.slice(1).toLowerCase();
+        }
+    }).replace(' ', '');
+    return (camelCaseValue + 'Page') as keyof IPage;
+};
+
 const Slider: React.FC<ISliderProps> = ({ data, category }) => {
     const results = data?.results;
+    const { nowPlayingPage, topRatedPage, upcomingPage, popularPage } = useAppSelector(state => state.page);
+    const page: IPage = { nowPlayingPage, topRatedPage, upcomingPage, popularPage };
+    const key: keyof IPage = convertToCamelCase(category) as keyof IPage;
+    const pageNumber = page[key] as number;
     const totalEntries = data?.results.length;
     const slideSize = 5;
     const [currentSlide, setCurrentSlide] = React.useState<number>(0);
-    const [currentPage, setCurrentPage] = React.useState<number>(0);
-    // const disableNext = (currentSlide + 1) * slideSize >= totalEntries;
-    const disableNext = currentPage > data?.total_pages;
+    const disableNext = pageNumber > data?.total_pages;
     const disableBack = currentSlide === 0;
     const currentResults = results?.slice(currentSlide * slideSize, (currentSlide + 1) * slideSize);
     const dispatch = useAppDispatch();
-    const lastSlide = (currentSlide + 2);
-    const getNextPage = (lastSlide * slideSize === totalEntries);
-    // const { page } = useAppSelector(state => state.page);
 
-    React.useEffect(() => {
-        if (data) {
-            const page = data.page;
-            setCurrentPage(page);
-        }
-    }, [data]);
 
 
     const handleNextPage = (pageNumber: number) => {
-        dispatch(setPage({ page: pageNumber, category }));
+        dispatch(setPage({ [key]: pageNumber, category }));
         setCurrentSlide(0);
     };
 
 
     const handleNext = () => {
-        const nextPage = currentPage + 1;
-        if (getNextPage) {
+        dispatch(setPage({ [key]: pageNumber, category }));
+        const nextPage = pageNumber + 1;
+
+        if ((currentSlide + 1) * slideSize === totalEntries) {
             handleNextPage(nextPage);
         }
 

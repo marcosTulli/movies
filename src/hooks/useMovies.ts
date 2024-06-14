@@ -1,33 +1,25 @@
 'use client';
-
-import { useEffect, useState } from 'react';
 import { useMoviesByCategory } from '@/hooks/queries';
-import { ISearchParams, LANGUAGE, MOVIE_CATEGORIES } from '@/models/models';
+import { IPage, ISearchParams, LANGUAGE, MOVIE_CATEGORIES } from '@/models/models';
 import { useAppSelector } from '@/store/store';
 
+const createParams = (page: number, category: MOVIE_CATEGORIES): ISearchParams => ({
+    language: LANGUAGE.EN,
+    page,
+    category
+});
+
 export const useMovies = () => {
-    const { page: selectedPage, category: selectedCategory } = useAppSelector(state => state.page);
-    const [currentCategory, setCurrentCategory] = useState<MOVIE_CATEGORIES | undefined>(undefined);
-    const [currentPage, setCurrentPage] = useState<number>(selectedPage);
+    const { nowPlayingPage, topRatedPage, upcomingPage, popularPage } = useAppSelector(state => state.page as IPage);
+    const nowPlayingParams = createParams(nowPlayingPage as number, MOVIE_CATEGORIES.NOW_PLAYING);
+    const topRatedParams = createParams(topRatedPage as number, MOVIE_CATEGORIES.TOP_RATED);
+    const upcomingParams = createParams(upcomingPage as number, MOVIE_CATEGORIES.UPCOMING);
+    const popularParams = createParams(popularPage as number, MOVIE_CATEGORIES.POPULAR);
 
-    useEffect(() => {
-        if (selectedCategory !== currentCategory) {
-            setCurrentCategory(selectedCategory);
-            setCurrentPage(selectedPage);
-        } else {
-            setCurrentPage(selectedPage);
-        }
-    }, [selectedCategory]);
-
-    const params: ISearchParams = {
-        language: LANGUAGE.EN,
-        page: currentPage
-    };
-
-    const { data: nowPlaying } = useMoviesByCategory(MOVIE_CATEGORIES.NOW_PLAYING, params);
-    const { data: topRated } = useMoviesByCategory(MOVIE_CATEGORIES.TOP_RATED, params);
-    const { data: upcoming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMING, params);
-    const { data: popular } = useMoviesByCategory(MOVIE_CATEGORIES.POPULAR, params);
+    const { data: nowPlaying } = useMoviesByCategory(MOVIE_CATEGORIES.NOW_PLAYING, nowPlayingParams);
+    const { data: topRated } = useMoviesByCategory(MOVIE_CATEGORIES.TOP_RATED, topRatedParams);
+    const { data: upcoming } = useMoviesByCategory(MOVIE_CATEGORIES.UPCOMING, upcomingParams);
+    const { data: popular } = useMoviesByCategory(MOVIE_CATEGORIES.POPULAR, popularParams);
 
     const movies = [
         {

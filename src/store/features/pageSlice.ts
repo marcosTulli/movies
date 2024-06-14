@@ -1,13 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { MOVIE_CATEGORIES } from "@/models/models";
+import { IPage } from "@/models/models";
 
-export interface IPage {
-    page: number,
-    category?: MOVIE_CATEGORIES;
+export interface ICategoryPages {
 }
 
 const initialState: IPage = {
-    page: 1,
+    nowPlayingPage: 1,
+    topRatedPage: 1,
+    upcomingPage: 1,
+    popularPage: 1,
+    category: undefined,
 };
 
 export const pageSlice = createSlice({
@@ -15,7 +17,10 @@ export const pageSlice = createSlice({
     initialState,
     reducers: {
         setPage: (state, action: PayloadAction<IPage>) => {
-            state.page = action.payload.page;
+            state.nowPlayingPage = action.payload.nowPlayingPage ?? state.nowPlayingPage;
+            state.topRatedPage = action.payload.topRatedPage ?? state.topRatedPage;
+            state.upcomingPage = action.payload.upcomingPage ?? state.upcomingPage;
+            state.popularPage = action.payload.popularPage ?? state.popularPage;
             state.category = action.payload.category;
         }
     }

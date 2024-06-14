@@ -4,9 +4,23 @@ import { IGetMovieParams, IGetPosterParams, ISearchMoviesParams, ISearchParams, 
 
 export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
     useQuery({
-        queryKey: ['top-rated', params, category],
-        queryFn: () => DataProviderInstance.getMoviesByCategory(category, params)
+        queryKey: ['category', params, category],
+        queryFn: () => DataProviderInstance.getMoviesByCategory(category, params),
+        enabled: params.category === category
     });
+
+// export const useMoviesByCategory = (category: MOVIE_CATEGORIES, params: ISearchParams) =>
+// useInfiniteQuery<ISearchResult>({
+//     queryKey: ['category', params, category],
+//     queryFn: () => DataProviderInstance.getMoviesByCategory(category, params),
+//     initialPageParam: 1,
+//     getNextPageParam: (_, pages) => {
+//         console.log(pages.length);
+//         return pages.length;
+//     },
+//     enabled: params.category === category
+// });
+
 
 
 export const usePoster = ({ width, id, enable }: IGetPosterParams) => {

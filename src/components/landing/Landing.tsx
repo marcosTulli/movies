@@ -7,11 +7,11 @@ import { ISearchResult } from '@/models/models';
 const Landing = () => {
     const movieCategories = useMovies();
 
-
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             {movieCategories?.map((category) => {
                 const { displayName, data } = category;
+
                 return (
                     <div key={category.category} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <p style={{ alignSelf: 'center', fontSize: '2rem' }}>{displayName}</p>
